@@ -1,0 +1,14 @@
+# Node dependencies
+node_modules/
+
+# Environment variables (CRITICAL SECURITY)
+.env
+gateway-api/.env
+client-ui/.env
+
+# Hardhat artifacts
+artifacts/
+cache/
+
+# Python cache
+__pycache__/
