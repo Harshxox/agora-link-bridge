@@ -1,0 +1,18 @@
+0x0000000000000000000000000000000000000000000000000000000000000001
+
+https://cloud.google.com/application/web3/u/1/faucet/ethereum/sepolia
+
+node server.js
+
+npm run dev
+
+python app.js
+
+4242 4242 4242 4242
+
+https://dashboard.stripe.com/acct_1TOiXpRJUrZRbtf9/test/settings
+
+MONDO DB
+AgoraCluster
+harshdeep
+hdCb8aJRqyfB8lwU
