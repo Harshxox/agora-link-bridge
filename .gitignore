@@ -1,14 +1,40 @@
-# Node dependencies
-node_modules/
-
-# Environment variables (CRITICAL SECURITY)
+# --- SENSITIVE DATA (CRITICAL) ---
 .env
-gateway-api/.env
-client-ui/.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.pem
+*.key
 
-# Hardhat artifacts
+# --- NODE.JS / REACT ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dist/
+build/
+.cache/
+
+# --- PYTHON / AI ENGINE ---
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.venv/
+.pytest_cache/
+
+# --- SMART CONTRACTS / HARDHAT ---
 artifacts/
 cache/
+typechain/
+typechain-types/
+coverage/
+coverage.json
 
-# Python cache
-__pycache__/
+# --- SYSTEM FILES ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
