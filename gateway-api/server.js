@@ -16,7 +16,7 @@ mongoose.connect(process.env.MONGO_URI)
 const { processBlockchainSettlement } = require('./web3Service.js');
 
 // Initialize Stripe with your Secret Key from .env
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY); 
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const app = express();
 app.use(express.json());
@@ -36,7 +36,7 @@ app.post('/process-payment', async (req, res) => {
     try {
         // --- STEP 1: Process Fiat Payment via Stripe ---
         console.log(`[Stripe] 1. Charging fiat card via Stripe...`);
-        
+
         // Mock exchange rate (1 ETH = $3000 USD)
         const MOCK_ETH_PRICE_USD = 3000;
 
@@ -65,8 +65,8 @@ app.post('/process-payment', async (req, res) => {
         console.log(`[Compliance] 2. Running AI AML Check...`);
         const aiResponse = await axios.post(AI_ENGINE_URL, {
             amount: amount,
-            wallet_age: walletAge, 
-            frequency: txFrequency  
+            wallet_age: walletAge,
+            frequency: txFrequency
         });
 
         const { status, risk_level, anomaly_score } = aiResponse.data;
@@ -74,11 +74,11 @@ app.post('/process-payment', async (req, res) => {
         // --- STEP 3: Compliance Check Logic ---
         if (status === "FLAGGED") {
             console.log(`[Compliance] ❌ REJECTED: Risk Score ${anomaly_score}`);
-            
+
             // --- NEW DAY 8: Save Rejected Log to Database ---
             await TransactionLog.create({
                 walletAddress: walletAddress,
-                fiatAmount: fiatTotalUSD, 
+                fiatAmount: fiatTotalUSD,
                 aiRiskLevel: risk_level,
                 aiAnomalyScore: anomaly_score,
                 status: 'REJECTED'
@@ -100,8 +100,8 @@ app.post('/process-payment', async (req, res) => {
         try {
             // This calls your web3Service.js to move real test ETH
             const txHash = await processBlockchainSettlement(
-                walletAddress, 
-                amount.toString(), 
+                walletAddress,
+                amount.toString(),
                 internalTxId
             );
 
@@ -127,7 +127,7 @@ app.post('/process-payment', async (req, res) => {
 
         } catch (web3Error) {
             console.error("[Blockchain Error] Settlement failed:", web3Error.message);
-            
+
             // --- NEW DAY 8: Save Failed Blockchain Attempt ---
             await TransactionLog.create({
                 walletAddress: walletAddress,
@@ -137,18 +137,18 @@ app.post('/process-payment', async (req, res) => {
                 status: 'FAILED'
             });
 
-            res.status(500).json({ 
-                success: false, 
+            res.status(500).json({
+                success: false,
                 message: "Fiat processed & AI Approved, but Blockchain settlement failed. Check Vault balance.",
-                error: web3Error.message 
+                error: web3Error.message
             });
         }
 
     } catch (error) {
         console.error("[Error] Pipeline Failed:", error.message);
-        res.status(500).json({ 
-            success: false, 
-            message: "Internal Gateway Error. Check if Stripe Keys are valid and Python Flask is running." 
+        res.status(500).json({
+            success: false,
+            message: "Internal Gateway Error. Check if Stripe Keys are valid and Python Flask is running."
         });
     }
 });

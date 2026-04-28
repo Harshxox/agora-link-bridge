@@ -24,12 +24,12 @@ const vaultContract = new ethers.Contract(contractAddress, vaultAbi, wallet);
 async function processBlockchainSettlement(recipientAddress, amountInEth, txId) {
     try {
         console.log(`[Web3] Initiating settlement for TX: ${txId}...`);
-        
+
         // Convert the human-readable ETH amount to Wei (machine format)
         const amountInWei = ethers.parseEther(amountInEth);
-        
+
         // Ensure the txId is a 32-byte hash (required by your smart contract)
-        const formattedTxId = ethers.id(txId); 
+        const formattedTxId = ethers.id(txId);
 
         // First, explicitly pass the compliance check (Owner only)
         console.log("[Web3] Setting compliance status to true...");
@@ -39,10 +39,10 @@ async function processBlockchainSettlement(recipientAddress, amountInEth, txId) 
         // Second, trigger the actual payment
         console.log(`[Web3] Sending ${amountInEth} ETH to ${recipientAddress}...`);
         const settlementTx = await vaultContract.settlePayment(recipientAddress, amountInWei, formattedTxId);
-        
+
         // Wait for the block to be mined
         const receipt = await settlementTx.wait();
-        
+
         console.log(`[Web3] SUCCESS! Transaction Hash: ${receipt.hash}`);
         return receipt.hash;
 

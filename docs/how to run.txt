@@ -16,3 +16,5 @@ MONDO DB
 AgoraCluster
 harshdeep
 hdCb8aJRqyfB8lwU
+
+https://cloud.google.com/application/web3/u/1/faucet/ethereum/sepolia

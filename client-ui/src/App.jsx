@@ -8,7 +8,7 @@ import AdminDashboard from './AdminDashboard';
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
 function App() {
-  const [view, setView] = useState('user'); 
+  const [view, setView] = useState('user');
 
   const handleAdminAccess = () => {
     const password = prompt("Enter Admin Security Key:");
@@ -25,21 +25,21 @@ function App() {
       <nav style={styles.navbar}>
         <div style={styles.brand}>AGORA-LINK</div>
         <div style={styles.navGroup}>
-          <button 
-            onClick={() => setView('user')} 
+          <button
+            onClick={() => setView('user')}
             style={{
-              ...styles.navBtn, 
+              ...styles.navBtn,
               backgroundColor: view === 'user' ? '#38bdf8' : 'transparent',
               color: view === 'user' ? '#0f172a' : 'white'
             }}
           >
             Bridge Gateway
           </button>
-          
-          <button 
-            onClick={handleAdminAccess} 
+
+          <button
+            onClick={handleAdminAccess}
             style={{
-              ...styles.navBtn, 
+              ...styles.navBtn,
               backgroundColor: view === 'admin' ? '#38bdf8' : 'transparent',
               color: view === 'admin' ? '#0f172a' : 'white'
             }}
