@@ -168,6 +168,22 @@ app.get('/admin/logs', async (req, res) => {
     }
 });
 
+// --- NEW: Fetch Real Stats from MongoDB ---
+app.get('/admin/stats', async (req, res) => {
+    try {
+        const approvedCount = await TransactionLog.countDocuments({ status: 'APPROVED' });
+        const rejectedCount = await TransactionLog.countDocuments({ status: 'REJECTED' });
+        
+        res.status(200).json({
+            approved: approvedCount,
+            rejected: rejectedCount
+        });
+    } catch (error) {
+        console.error("Database stats error:", error);
+        res.status(500).json({ error: "Failed to fetch stats" });
+    }
+});
+
 app.listen(PORT, () => {
     console.log(`\n==============================================`);
     console.log(`Agora-Link Gateway running on http://127.0.0.1:${PORT}`);

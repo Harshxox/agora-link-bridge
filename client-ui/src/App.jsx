@@ -3,6 +3,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import PaymentGateway from './PaymentGateway';
 import AdminDashboard from './AdminDashboard';
+import GlobalSecurityMonitor from './GlobalSecurityMonitor';
 import './App.css';
 
 // Use your VITE public key here
@@ -103,6 +104,9 @@ function App() {
           <AdminDashboard />
         )}
       </main>
+
+      {/* === GLOBAL SECURITY MONITOR (Bottom-Left HUD) === */}
+      <GlobalSecurityMonitor />
     </div>
   );
 }

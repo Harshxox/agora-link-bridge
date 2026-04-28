@@ -538,7 +538,7 @@
 .admin-container {
   width: 95%;
   max-width: 1200px;
-  padding: 40px;
+  padding: 40px 40px 220px; /* Added extra bottom padding to clear the HUD */
   position: relative;
   z-index: 1;
 }
