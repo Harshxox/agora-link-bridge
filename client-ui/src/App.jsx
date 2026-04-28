@@ -3,6 +3,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import PaymentGateway from './PaymentGateway';
 import AdminDashboard from './AdminDashboard';
+import './App.css';
 
 // Use your VITE public key here
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
@@ -20,37 +21,80 @@ function App() {
   };
 
   return (
-    <div style={styles.appContainer}>
-      {/* --- THIS NAV BAR MUST BE OUTSIDE THE VIEW LOGIC --- */}
-      <nav style={styles.navbar}>
-        <div style={styles.brand}>AGORA-LINK</div>
-        <div style={styles.navGroup}>
+    <div style={{ minHeight: '100vh', position: 'relative', zIndex: 1, overflowX: 'hidden' }}>
+
+      {/* === CYBER BACKGROUND LAYER === */}
+      <div className="cyber-bg">
+        {/* Floating Orbs */}
+        <div className="orb orb-1"></div>
+        <div className="orb orb-2"></div>
+        <div className="orb orb-3"></div>
+
+        {/* Circuit Lines */}
+        <div className="circuit-lines">
+          <div className="circuit-line"></div>
+          <div className="circuit-line"></div>
+          <div className="circuit-line"></div>
+          <div className="circuit-line"></div>
+          <div className="circuit-line"></div>
+          <div className="circuit-v"></div>
+          <div className="circuit-v"></div>
+          <div className="circuit-v"></div>
+        </div>
+
+        {/* Security Icons */}
+        <div className="security-icon">🛡️</div>
+        <div className="security-icon">🔒</div>
+        <div className="security-icon">🔐</div>
+        <div className="security-icon">⚡</div>
+        <div className="security-icon">🛡️</div>
+
+        {/* Particle Dots */}
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+
+        {/* Grid Overlay */}
+        <div className="grid-overlay"></div>
+      </div>
+
+      {/* === GLASSMORPHISM NAVBAR === */}
+      <nav className="navbar">
+        <div className="navbar-brand">
+          <div className="brand-icon">⬡</div>
+          <span className="brand-text">AGORA-LINK</span>
+          <span className="brand-tag">V2.0</span>
+        </div>
+
+        <div className="nav-group">
+          <div className="nav-status">
+            <span className="pulse-dot"></span>
+            SYSTEM ONLINE
+          </div>
+
           <button
+            id="nav-bridge-btn"
             onClick={() => setView('user')}
-            style={{
-              ...styles.navBtn,
-              backgroundColor: view === 'user' ? '#38bdf8' : 'transparent',
-              color: view === 'user' ? '#0f172a' : 'white'
-            }}
+            className={`nav-btn ${view === 'user' ? 'active' : ''}`}
           >
-            Bridge Gateway
+            ◈ Bridge Gateway
           </button>
 
           <button
+            id="nav-admin-btn"
             onClick={handleAdminAccess}
-            style={{
-              ...styles.navBtn,
-              backgroundColor: view === 'admin' ? '#38bdf8' : 'transparent',
-              color: view === 'admin' ? '#0f172a' : 'white'
-            }}
+            className={`nav-btn ${view === 'admin' ? 'active' : ''}`}
           >
-            Compliance Admin
+            ◇ Compliance Admin
           </button>
         </div>
       </nav>
 
-      {/* --- MAIN CONTENT AREA --- */}
-      <main style={styles.mainArea}>
+      {/* === MAIN CONTENT === */}
+      <main className="main-area">
         {view === 'user' ? (
           <Elements stripe={stripePromise}>
             <PaymentGateway />
@@ -62,49 +106,5 @@ function App() {
     </div>
   );
 }
-
-const styles = {
-  appContainer: {
-    minHeight: '100vh',
-    backgroundColor: '#0f172a', // Deep background
-    color: 'white',
-    fontFamily: '"Inter", sans-serif',
-  },
-  navbar: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: '15px 60px',
-    backgroundColor: '#1e293b', // Lighter slate for the bar
-    borderBottom: '2px solid #334155',
-    position: 'sticky',
-    top: 0,
-    zIndex: 1000,
-  },
-  brand: {
-    fontSize: '24px',
-    fontWeight: '900',
-    color: '#38bdf8',
-    letterSpacing: '2px',
-  },
-  navGroup: {
-    display: 'flex',
-    gap: '20px'
-  },
-  navBtn: {
-    padding: '10px 25px',
-    border: '2px solid #38bdf8',
-    borderRadius: '8px',
-    cursor: 'pointer',
-    fontWeight: 'bold',
-    fontSize: '14px',
-    transition: '0.3s',
-  },
-  mainArea: {
-    display: 'flex',
-    justifyContent: 'center',
-    padding: '40px 20px',
-  }
-};
 
 export default App;

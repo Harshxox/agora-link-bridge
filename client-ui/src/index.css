@@ -1,69 +1,190 @@
+/* ============================================================
+   AGORA-LINK — Web3 Compliance Gateway
+   Hyper-Realistic 3D Command Center UI
+   ============================================================ */
+
+/* --- CSS CUSTOM PROPERTIES --- */
+:root {
+  --bg-void: #030712;
+  --bg-deep: #050914;
+  --bg-panel: rgba(15, 23, 42, 0.35);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-highlight: rgba(255, 255, 255, 0.04);
+  --cyan: #38bdf8;
+  --cyan-dim: rgba(56, 189, 248, 0.15);
+  --cyan-glow: rgba(56, 189, 248, 0.4);
+  --green: #34d399;
+  --green-dim: rgba(52, 211, 153, 0.15);
+  --purple: #a78bfa;
+  --purple-dim: rgba(167, 139, 250, 0.15);
+  --red: #f87171;
+  --red-dim: rgba(248, 113, 113, 0.15);
+  --amber: #fbbf24;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --font-sans: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* --- GLOBAL RESET --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  background-color: #121212;
-  color: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  font-family: var(--font-sans);
+  background: var(--bg-void);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-.gateway-container {
-  background-color: #1e1e1e;
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-  width: 400px;
+/* --- CYBER BACKGROUND LAYER --- */
+.cyber-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(56, 189, 248, 0.06) 0%, transparent 60%),
+              radial-gradient(ellipse 60% 50% at 80% 100%, rgba(167, 139, 250, 0.05) 0%, transparent 60%),
+              var(--bg-void);
+  overflow: hidden;
 }
 
-h2 {
-  margin-top: 0;
-  text-align: center;
-  color: #4CAF50;
+/* --- FLOATING 3D ORBS --- */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.5;
+  will-change: transform;
+}
+.orb-1 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, var(--cyan) 0%, transparent 70%);
+  top: -8%; left: 8%;
+  animation: orbFloat1 16s infinite alternate ease-in-out;
+}
+.orb-2 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, var(--green) 0%, transparent 70%);
+  bottom: -12%; right: 3%;
+  animation: orbFloat2 20s infinite alternate ease-in-out;
+}
+.orb-3 {
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, var(--purple) 0%, transparent 70%);
+  top: 35%; left: 55%;
+  animation: orbFloat3 14s infinite alternate ease-in-out;
 }
 
-.input-group {
-  margin-bottom: 20px;
+@keyframes orbFloat1 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(40px, -50px) scale(1.15); }
+}
+@keyframes orbFloat2 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-30px, -70px) scale(1.1); }
+}
+@keyframes orbFloat3 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(50px, 30px) scale(0.9); }
 }
 
-.input-group label {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 14px;
-  color: #aaaaaa;
+/* --- CIRCUIT LINES --- */
+.circuit-lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.circuit-line {
+  position: absolute;
+  background: linear-gradient(90deg, transparent 0%, var(--cyan) 50%, transparent 100%);
+  opacity: 0.08;
+  height: 1px;
+}
+.circuit-line:nth-child(1) { top: 15%; width: 60%; left: 10%; animation: circuitPulse 6s infinite linear; }
+.circuit-line:nth-child(2) { top: 35%; width: 45%; left: 30%; animation: circuitPulse 8s 1s infinite linear; }
+.circuit-line:nth-child(3) { top: 55%; width: 70%; left: 5%; animation: circuitPulse 7s 2s infinite linear; }
+.circuit-line:nth-child(4) { top: 75%; width: 50%; left: 25%; animation: circuitPulse 9s 0.5s infinite linear; }
+.circuit-line:nth-child(5) { top: 90%; width: 40%; left: 40%; animation: circuitPulse 5s 3s infinite linear; }
+
+.circuit-v {
+  position: absolute;
+  background: linear-gradient(180deg, transparent 0%, var(--purple) 50%, transparent 100%);
+  opacity: 0.06;
+  width: 1px;
+}
+.circuit-v:nth-child(6) { left: 20%; height: 40%; top: 10%; animation: circuitPulseV 10s infinite linear; }
+.circuit-v:nth-child(7) { left: 50%; height: 50%; top: 25%; animation: circuitPulseV 8s 2s infinite linear; }
+.circuit-v:nth-child(8) { left: 80%; height: 35%; top: 40%; animation: circuitPulseV 12s 1s infinite linear; }
+
+@keyframes circuitPulse {
+  0%, 100% { opacity: 0.04; }
+  50% { opacity: 0.12; }
+}
+@keyframes circuitPulseV {
+  0%, 100% { opacity: 0.03; }
+  50% { opacity: 0.09; }
 }
 
-.input-group input {
-  width: 100%;
-  padding: 12px;
-  border-radius: 6px;
-  border: 1px solid #333;
-  background-color: #2a2a2a;
-  color: white;
-  box-sizing: border-box;
+/* --- FLOATING SECURITY ICONS --- */
+.security-icon {
+  position: absolute;
+  font-size: 28px;
+  opacity: 0.06;
+  pointer-events: none;
+  filter: drop-shadow(0 0 10px var(--cyan-glow));
+}
+.security-icon:nth-child(1) { top: 12%; left: 6%; animation: iconDrift 22s infinite alternate ease-in-out; }
+.security-icon:nth-child(2) { top: 60%; right: 8%; animation: iconDrift 18s 3s infinite alternate ease-in-out; }
+.security-icon:nth-child(3) { bottom: 15%; left: 15%; animation: iconDrift 25s 1s infinite alternate ease-in-out; }
+.security-icon:nth-child(4) { top: 25%; right: 20%; animation: iconDrift 20s 5s infinite alternate ease-in-out; }
+.security-icon:nth-child(5) { bottom: 30%; right: 35%; animation: iconDrift 16s 2s infinite alternate ease-in-out; }
+
+@keyframes iconDrift {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(15px, -20px) rotate(5deg); }
+  50% { transform: translate(-10px, 10px) rotate(-3deg); }
+  75% { transform: translate(20px, 15px) rotate(8deg); }
+  100% { transform: translate(-5px, -25px) rotate(-5deg); }
 }
 
-.stripe-card-element {
-  padding: 12px;
-  border-radius: 6px;
-  border: 1px solid #333;
-  background-color: #2a2a2a;
+/* --- PARTICLE DOTS --- */
+.particle {
+  position: absolute;
+  width: 2px; height: 2px;
+  border-radius: 50%;
+  background: var(--cyan);
+  opacity: 0;
+  pointer-events: none;
+}
+.particle:nth-child(1) { top: 10%; left: 30%; animation: particleBlink 4s 0s infinite; }
+.particle:nth-child(2) { top: 45%; left: 70%; animation: particleBlink 5s 1s infinite; }
+.particle:nth-child(3) { top: 70%; left: 20%; animation: particleBlink 6s 2s infinite; }
+.particle:nth-child(4) { top: 25%; left: 85%; animation: particleBlink 4.5s 0.5s infinite; }
+.particle:nth-child(5) { top: 80%; left: 55%; animation: particleBlink 5.5s 3s infinite; }
+.particle:nth-child(6) { top: 50%; left: 10%; animation: particleBlink 3.5s 1.5s infinite; }
+
+@keyframes particleBlink {
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 0.6; transform: scale(1.5); }
 }
 
-.submit-btn {
-  width: 100%;
-  padding: 14px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.submit-btn:hover {
-  background-color: #45a049;
+/* --- GRID OVERLAY --- */
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(56, 189, 248, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.015) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
 }

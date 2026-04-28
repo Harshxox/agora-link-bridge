@@ -72,22 +72,26 @@ app.post('/process-payment', async (req, res) => {
         const { status, risk_level, anomaly_score } = aiResponse.data;
 
         // --- STEP 3: Compliance Check Logic ---
+        // --- STEP 3: Compliance Check Logic ---
         if (status === "FLAGGED") {
-            console.log(`[Compliance] ❌ REJECTED: Risk Score ${anomaly_score}`);
+            // Log the detailed rejection reason in your terminal
+            console.log(`[Compliance] ❌ REJECTED: Risk Score ${anomaly_score}, Risk Level: ${risk_level}`);
 
-            // --- NEW DAY 8: Save Rejected Log to Database ---
+            // --- NEW DAY 10: Save Rejected Log to Database (with risk level) ---
             await TransactionLog.create({
                 walletAddress: walletAddress,
                 fiatAmount: fiatTotalUSD,
-                aiRiskLevel: risk_level,
+                aiRiskLevel: risk_level, // Make sure your DB model handles this string (e.g., "High Risk")
                 aiAnomalyScore: anomaly_score,
                 status: 'REJECTED'
             });
 
+            // --- DAY 10 MODIFICATION: Send the specific reason back to React ---
+            // Instead of a generic message, we tell React the Risk Level.
+            // We use 403 Forbidden to indicate compliance blocking.
             return res.status(403).json({
                 success: false,
-                message: "Transaction blocked by Agora-Link AML Engine.",
-                risk_level
+                message: `Blocked by AI: ${risk_level}` // THIS IS THE REASON WE WANT
             });
         }
 
