@@ -6,13 +6,14 @@ node server.js
 
 npm run dev
 
-python app.js
+python app.py
 
 4242 4242 4242 4242
 
 https://dashboard.stripe.com/acct_1TOiXpRJUrZRbtf9/test/settings
 
-MONDO DB
+MONDO DB - harshdeepxox@gmail.com(google login)
+
 AgoraCluster
 harshdeep
 hdCb8aJRqyfB8lwU
