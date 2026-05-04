@@ -1,6 +1,6 @@
 # 🚀 AGORA-LINK: Enterprise AI-Gated Fiat-to-Crypto Bridge
 
-![Agora-Link Banner](./Agro_Link.png)
+![Agora-Link Banner](./assets/Agro_Link.png)
 
 **Author:** Harshdeep Sharma  
 **Version:** 1.0.0 (Stable Release)  
