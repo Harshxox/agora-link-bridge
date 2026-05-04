@@ -39,8 +39,7 @@ It uses an **Agentic AI Compliance Engine** to ensure every transaction is verif
 ## 📺 Project Demo Video
 Watch the 5-minute technical walkthrough demonstrating the "founder mindset", functional prototype, and backend architecture.
 
-<video src="./assets/Agora-Link-bridge.mp4" controls width="100%"></video>
-
+D:\agora-link\assets\Agora-Link-bridge.mp4
 ---
 ## 🏗️ System Architecture
 
