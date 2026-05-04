@@ -57,15 +57,14 @@ Agora-Link follows a **multi-layered microservices architecture** for security, 
 
 ## 🛠️ Tech Stack
 
-| Layer       | Technology             | Purpose                              |
-|------------|----------------------|--------------------------------------|
-| Frontend   | React (Vite)         | High-performance UI                  |
-| Backend    | Node.js / Express    | API orchestration                    |
-| AI / ML    | Python (Scikit-Learn)| Anomaly detection                    |
-| Web3       | Solidity / Ethers.js | Smart contract interaction           |
-| Database   | MongoDB Atlas        | Audit logging                        |
-| Payments   | Stripe API           | Fiat-to-crypto processing            |
-
+| Layer | Technology | Purpose |
+| :--- | :--- | :--- |
+| **Frontend** | React.js, Vite, Tailwind CSS | High-performance, responsive UI |
+| **Backend** | Node.js, Express.js | API orchestration & webhook handling |
+| **AI / ML** | Python, Scikit-Learn | Behavioral anomaly detection |
+| **Web3** | Solidity, Ethers.js | Smart contract interaction & signing |
+| **Database** | MongoDB Atlas | Immutable audit logging |
+| **Payments** | Stripe API | Secure fiat-to-crypto tokenization |
 ---
 
 ## 🛡️ Security Features
@@ -83,9 +82,30 @@ Agora-Link follows a **multi-layered microservices architecture** for security, 
 - **On-Chain Verification**
   - Each transaction linked with a verifiable hash (Etherscan)
 
+- **Hybrid Deployment:** 
+  - Smart contracts were compiled and deployed via a cloud-based EVM (Remix IDE) to bypass local dependency conflicts and maintain rapid development velocity.
 ---
 
 ## ⚙️ Execution Guide
+
+### Prerequisites
+Ensure you have the following installed before running the project:
+* Node.js (v18+)
+* Python (v3.8+)
+* MongoDB Atlas Account
+* Stripe Developer Account (Test Mode)
+* MetaMask Wallet (Connected to Sepolia)
+
+### Environment Variables
+Create a `.env` file in the root of your `gateway-api` and add the following keys:
+```env
+PORT=5000
+STRIPE_SECRET_KEY=your_stripe_test_key
+MONGODB_URI=your_mongodb_connection_string
+SEPOLIA_RPC_URL=your_alchemy_or_infura_url
+PRIVATE_KEY=your_metamask_private_key
+CONTRACT_ADDRESS=your_deployed_vault_address
+
 
 Run all three core services simultaneously.
 
@@ -98,7 +118,7 @@ cd compliance-engine
 pip install flask flask-cors pandas scikit-learn
 python app.py
 ```
-Runs on: http://127.0.0.1:5001
+Runs on: [http://127.0.0.1:5001](http://127.0.0.1:5001)
 
 ### 2️⃣ Gateway API (Node.js)
 
@@ -117,6 +137,24 @@ npm install
 npm run dev
 ```
 Runs on: http://localhost:5173
+
+### Smart Contract Setup (Optional)
+
+The AgoraVault smart contract is currently live on the Sepolia Testnet. By default, the Node.js gateway is configured to interact with this pre-deployed instance.
+
+If you wish to deploy your own instance of the vault:
+
+- Navigate to the `contracts/` directory in this repository and copy the `AgoraVault.sol` code.
+
+- Open Remix IDE.
+
+- Create a new file, paste the Solidity code, and compile it.
+
+- Go to the "Deploy & Run Transactions" tab, set the Environment to Injected Provider - MetaMask (ensure you are on the Sepolia network).
+
+- Deploy the contract and copy your new contract address.
+
+Update the CONTRACT_ADDRESS variable in your .env file with the new address.
 
 ## 📊 Administrative Dashboard
 Agora-Link includes a built-in Compliance Dashboard:
