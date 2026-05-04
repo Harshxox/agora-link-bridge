@@ -36,6 +36,7 @@ It uses an **Agentic AI Compliance Engine** to ensure every transaction is verif
 ![Terminal Execution Logs](./assets/terminal-logs.png)
 
 ---
+
 ## 📺 Project Demo Video
 Watch the 5-minute technical walkthrough demonstrating the "founder mindset", functional prototype, and backend architecture.
 
