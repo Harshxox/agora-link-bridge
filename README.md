@@ -35,7 +35,7 @@ It uses an **Agentic AI Compliance Engine** to ensure every transaction is verif
 *Successful Node.js gateway payout triggered post-AI verification.*1
 ![Terminal Execution Logs](./assets/terminal-logs.png)
 
---
+---
 
 ## 🏗️ System Architecture
 
