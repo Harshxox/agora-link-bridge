@@ -21,6 +21,22 @@ It uses an **Agentic AI Compliance Engine** to ensure every transaction is verif
 
 ---
 
+## 📸 System Walkthrough
+
+### 1. The Fiat On-Ramp (React + Stripe)
+*Secure Web2 entry point capturing fiat intent via Stripe Elements.*
+![Fiat On-Ramp UI](./assets/frontend-ui.jpeg) 
+
+### 2. AI Compliance Dashboard 
+*Real-time monitoring of Isolation Forest anomaly detection and transaction risk scores.*
+![Admin Compliance Dashboard](./assets/admin-dashboard.png)
+
+### 3. Automated Web3 Settlement (Sepolia Testnet)
+*Successful Node.js gateway payout triggered post-AI verification.*1
+![Terminal Execution Logs](./assets/terminal-logs.png)
+
+--
+
 ## 🏗️ System Architecture
 
 Agora-Link follows a **multi-layered microservices architecture** for security, scalability, and real-time AML detection.
