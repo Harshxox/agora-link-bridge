@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import PaymentGateway from './PaymentGateway';
@@ -11,6 +11,16 @@ const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
 function App() {
   const [view, setView] = useState('user');
+  const [darkMode, setDarkMode] = useState(true);
+
+  // Sync theme class to body so body bg + scrollbar also switch
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.remove('light-mode');
+    } else {
+      document.body.classList.add('light-mode');
+    }
+  }, [darkMode]);
 
   const handleAdminAccess = () => {
     const password = prompt("Enter Admin Security Key:");
@@ -22,7 +32,7 @@ function App() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', position: 'relative', zIndex: 1, overflowX: 'hidden' }}>
+    <div className={darkMode ? '' : 'light-mode'} style={{ minHeight: '100vh', position: 'relative', zIndex: 1, overflowX: 'hidden' }}>
 
       {/* === ANIMATED BACKGROUND LAYER (Agorax-style) === */}
       <div className="cyber-bg">
@@ -162,6 +172,15 @@ function App() {
             className={`nav-btn ${view === 'admin' ? 'active' : ''}`}
           >
             ◇ Compliance Admin
+          </button>
+
+          <button
+            id="nav-theme-btn"
+            onClick={() => setDarkMode(!darkMode)}
+            className="nav-btn theme-toggle-btn"
+            title={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+          >
+            {darkMode ? '☀' : '☾'}
           </button>
         </div>
       </nav>

@@ -50,6 +50,15 @@ body {
 ::-webkit-scrollbar-thumb { background: var(--border-hard); }
 ::-webkit-scrollbar-thumb:hover { background: var(--neon); }
 
+/* Body-level light mode override */
+body.light-mode {
+  background: #f5f5f0;
+  color: #1a1a1a;
+}
+body.light-mode ::-webkit-scrollbar-track { background: #f5f5f0; }
+body.light-mode ::-webkit-scrollbar-thumb { background: #c4c4bc; }
+body.light-mode ::-webkit-scrollbar-thumb:hover { background: #2d6a2e; }
+
 /* ==========================================================
    CYBER BACKGROUND — Fixed full-screen layer
    ========================================================== */
@@ -326,4 +335,123 @@ body {
     radial-gradient(circle at 0 0, transparent 19px, rgba(200,255,87,0.3) 19px, rgba(200,255,87,0.3) 20px, transparent 20px),
     radial-gradient(circle at 20px 35px, transparent 19px, rgba(200,255,87,0.3) 19px, rgba(200,255,87,0.3) 20px, transparent 20px);
   background-size: 40px 70px;
+}
+
+/* ==========================================================
+   LIGHT MODE — Full theme override
+   ========================================================== */
+.light-mode {
+  --bg-void: #f5f5f0;
+  --bg-deep: #eeeee8;
+  --bg-panel: #ffffff;
+  --bg-card: #ffffff;
+  --bg-elevated: #fafaf5;
+  --border-hard: #d4d4cc;
+  --border-accent: #2d6a2e;
+  --neon: #2d6a2e;
+  --neon-dim: rgba(45, 106, 46, 0.06);
+  --neon-glow: rgba(45, 106, 46, 0.2);
+  --cyan: #0369a1;
+  --cyan-dim: rgba(3, 105, 161, 0.08);
+  --cyan-glow: rgba(3, 105, 161, 0.25);
+  --green: #15803d;
+  --green-dim: rgba(21, 128, 61, 0.08);
+  --red: #dc2626;
+  --red-dim: rgba(220, 38, 38, 0.06);
+  --purple: #7c3aed;
+  --purple-dim: rgba(124, 58, 237, 0.06);
+  --text-primary: #1a1a1a;
+  --text-secondary: rgba(0, 0, 0, 0.6);
+  --text-muted: rgba(0, 0, 0, 0.35);
+  --glass-border: #d4d4cc;
+  --glass-highlight: rgba(0,0,0,0.02);
+  color: #1a1a1a;
+}
+
+/* --- LIGHT: Body & Selection --- */
+.light-mode ::selection {
+  background: #2d6a2e;
+  color: #fff;
+}
+
+/* --- LIGHT: Scrollbar --- */
+.light-mode ::-webkit-scrollbar-track { background: #f5f5f0; }
+.light-mode ::-webkit-scrollbar-thumb { background: #c4c4bc; }
+.light-mode ::-webkit-scrollbar-thumb:hover { background: #2d6a2e; }
+
+/* --- LIGHT: Background layer --- */
+.light-mode .cyber-bg {
+  background:
+    radial-gradient(ellipse 70% 50% at 20% 0%, rgba(45,106,46,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(124,58,237,0.03) 0%, transparent 60%),
+    #f5f5f0;
+}
+
+/* --- LIGHT: Grid overlay --- */
+.light-mode .grid-overlay {
+  background-image:
+    linear-gradient(rgba(45,106,46,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(45,106,46,0.04) 1px, transparent 1px);
+}
+
+/* --- LIGHT: Orbs --- */
+.light-mode .orb { opacity: 0.06; filter: blur(160px); }
+.light-mode .orb-1 { background: radial-gradient(circle, #2d6a2e 0%, transparent 70%); }
+.light-mode .orb-2 { background: radial-gradient(circle, #b8860b 0%, transparent 70%); }
+.light-mode .orb-3 { background: radial-gradient(circle, #7c3aed 0%, transparent 70%); }
+
+/* --- LIGHT: Floating data cards --- */
+.light-mode .float-card {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(45, 106, 46, 0.12);
+  opacity: 0.4;
+  box-shadow: 2px 2px 0 0 rgba(0,0,0,0.03);
+}
+.light-mode .fc-header { color: rgba(0,0,0,0.5); }
+.light-mode .fc-body { color: rgba(0,0,0,0.6); }
+.light-mode .fc-footer { color: rgba(0,0,0,0.25); }
+.light-mode .fc-3, .light-mode .fc-9 { border-color: rgba(124,58,237,0.15); }
+.light-mode .fc-4, .light-mode .fc-11 { border-color: rgba(220,38,38,0.1); }
+.light-mode .fc-5, .light-mode .fc-10 { border-color: rgba(21,128,61,0.12); }
+
+/* --- LIGHT: Signal rings --- */
+.light-mode .signal-ring { border-color: rgba(45,106,46,0.15); }
+.light-mode .sr-3 { border-color: rgba(124,58,237,0.15); }
+.light-mode .sr-4 { border-color: rgba(21,128,61,0.15); }
+
+/* --- LIGHT: Data streams --- */
+.light-mode .data-stream::after {
+  background: linear-gradient(90deg, transparent, #2d6a2e, rgba(45,106,46,0.4), transparent);
+}
+.light-mode .ds-2::after {
+  background: linear-gradient(90deg, transparent, #7c3aed, rgba(124,58,237,0.35), transparent);
+}
+.light-mode .ds-4::after {
+  background: linear-gradient(90deg, transparent, #15803d, rgba(21,128,61,0.35), transparent);
+}
+.light-mode .data-stream-v::after {
+  background: linear-gradient(180deg, transparent, rgba(45,106,46,0.35), #2d6a2e, transparent);
+}
+.light-mode .dsv-2::after {
+  background: linear-gradient(180deg, transparent, rgba(124,58,237,0.3), #7c3aed, transparent);
+}
+.light-mode .data-stream { opacity: 0; }
+.light-mode .data-stream-v { opacity: 0; }
+
+/* --- LIGHT: Node dots --- */
+.light-mode .node-dot { background: #2d6a2e; }
+.light-mode .node-dot::after { border-color: rgba(45,106,46,0.12); }
+.light-mode .nd-3 { background: #7c3aed; }
+.light-mode .nd-3::after { border-color: rgba(124,58,237,0.12); }
+.light-mode .nd-5 { background: #15803d; }
+.light-mode .nd-5::after { border-color: rgba(21,128,61,0.12); }
+.light-mode .nd-7 { background: #7c3aed; }
+.light-mode .nd-7::after { border-color: rgba(124,58,237,0.12); }
+
+/* --- LIGHT: Hex pattern --- */
+.light-mode .hex-pattern {
+  opacity: 0.03;
+  background-image:
+    radial-gradient(circle at 0 0, transparent 19px, rgba(45,106,46,0.2) 19px, rgba(45,106,46,0.2) 20px, transparent 20px),
+    radial-gradient(circle at 20px 35px, transparent 19px, rgba(45,106,46,0.2) 19px, rgba(45,106,46,0.2) 20px, transparent 20px);
 }

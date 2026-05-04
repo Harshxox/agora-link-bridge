@@ -641,6 +641,27 @@
   100% { top: 100%; opacity: 0; }
 }
 
+/* ==========================================================
+   THEME TOGGLE BUTTON
+   ========================================================== */
+.theme-toggle-btn {
+  font-size: 18px !important;
+  padding: 8px 14px !important;
+  letter-spacing: 0 !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  min-width: 42px;
+  transition: all 0.25s ease;
+}
+.theme-toggle-btn:hover {
+  border-color: var(--neon) !important;
+  color: var(--neon) !important;
+  background: var(--neon-dim) !important;
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 0 var(--neon);
+}
+
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {
   .navbar { padding: 14px 16px; flex-wrap: wrap; gap: 10px; }
@@ -648,6 +669,7 @@
   .navbar-brand .brand-tag { display: none; }
   .nav-status { display: none; }
   .nav-btn { padding: 8px 14px; font-size: 9px; }
+  .theme-toggle-btn { font-size: 16px !important; padding: 6px 10px !important; min-width: 36px; }
   .main-area { padding: 40px 12px 60px; }
   .gateway-container { transform: none; }
   .gateway-container:hover { transform: none; }
@@ -656,3 +678,211 @@
   .floating-badge { font-size: 8px; padding: 4px 8px; }
   .admin-container { padding: 20px 12px; }
 }
+
+/* ==========================================================
+   LIGHT MODE — Component Overrides
+   ========================================================== */
+
+/* --- LIGHT: Navbar --- */
+.light-mode .navbar {
+  background: rgba(245, 245, 240, 0.92);
+  border-bottom-color: var(--border-hard);
+}
+.light-mode .navbar-brand .brand-icon {
+  background: var(--neon);
+  border-color: var(--neon);
+  color: #fff;
+}
+.light-mode .navbar-brand .brand-text {
+  color: var(--neon);
+}
+.light-mode .nav-status {
+  color: var(--neon);
+  background: var(--neon-dim);
+  border-color: rgba(45,106,46,0.15);
+}
+.light-mode .nav-status .pulse-dot {
+  background: var(--neon);
+}
+.light-mode .nav-btn {
+  color: var(--text-secondary);
+  border-color: var(--border-hard);
+  background: transparent;
+}
+.light-mode .nav-btn:hover {
+  border-color: var(--neon);
+  color: var(--neon);
+  background: var(--neon-dim);
+  box-shadow: 4px 4px 0 0 var(--neon);
+}
+.light-mode .nav-btn.active {
+  background: var(--neon);
+  border-color: var(--neon);
+  color: #fff;
+  box-shadow: 4px 4px 0 0 rgba(45,106,46,0.25);
+}
+
+/* --- LIGHT: Glass slab card --- */
+.light-mode .glass-slab {
+  background: var(--bg-card);
+  border-color: var(--border-hard);
+  box-shadow: 8px 8px 0 0 rgba(45,106,46,0.04);
+}
+.light-mode .glass-slab:hover {
+  border-color: rgba(45,106,46,0.3);
+  box-shadow: 8px 8px 0 0 rgba(45,106,46,0.08);
+}
+.light-mode .glass-slab::before {
+  background: linear-gradient(90deg, transparent, var(--neon), transparent);
+  opacity: 0.15;
+}
+
+/* --- LIGHT: Floating badges --- */
+.light-mode .floating-badge {
+  background: var(--bg-card);
+}
+.light-mode .floating-badge.compliance {
+  border-color: var(--green);
+  color: var(--green);
+}
+.light-mode .floating-badge.status {
+  border-color: var(--neon);
+  color: var(--neon);
+}
+
+/* --- LIGHT: Card header --- */
+.light-mode .card-header h1 {
+  color: var(--text-primary);
+}
+.light-mode .card-header h1 .header-icon {
+  color: var(--neon);
+}
+.light-mode .card-divider {
+  background: var(--border-hard);
+}
+.light-mode .card-divider::after {
+  background: var(--neon);
+}
+
+/* --- LIGHT: Inputs --- */
+.light-mode .input-group input,
+.light-mode .input-group select {
+  background: rgba(0, 0, 0, 0.02);
+  color: var(--text-primary);
+  border-color: var(--border-hard);
+}
+.light-mode .input-group input:focus,
+.light-mode .input-group select:focus {
+  border-color: var(--neon);
+  box-shadow: 4px 4px 0 0 rgba(45,106,46,0.1);
+  background-color: rgba(45,106,46,0.02);
+}
+.light-mode .input-group input::placeholder {
+  color: var(--text-muted);
+}
+.light-mode .input-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%232d6a2e' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+}
+.light-mode .input-group select option {
+  background: #fff;
+  color: #1a1a1a;
+}
+
+/* --- LIGHT: Stripe element --- */
+.light-mode .stripe-card-element {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: var(--border-hard);
+}
+.light-mode .stripe-card-element:focus-within {
+  border-color: var(--neon);
+  box-shadow: 4px 4px 0 0 rgba(45,106,46,0.1);
+}
+
+/* --- LIGHT: AI section header --- */
+.light-mode .ai-section-header {
+  background: rgba(124, 58, 237, 0.03);
+  border-color: rgba(124, 58, 237, 0.12);
+  border-left-color: var(--purple);
+}
+
+/* --- LIGHT: Submit button --- */
+.light-mode .submit-btn {
+  background: var(--neon);
+  border-color: var(--neon);
+  color: #fff;
+  box-shadow: 6px 6px 0 0 rgba(45,106,46,0.15);
+}
+.light-mode .submit-btn:hover {
+  box-shadow: 9px 9px 0 0 rgba(45,106,46,0.2);
+}
+
+/* --- LIGHT: Status display --- */
+.light-mode .status-display.processing {
+  background: var(--neon-dim);
+  border-color: rgba(45,106,46,0.25);
+  color: var(--neon);
+}
+
+/* --- LIGHT: TX Receipt --- */
+.light-mode .tx-receipt {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: var(--border-hard);
+}
+.light-mode .tx-receipt a {
+  color: var(--neon);
+}
+.light-mode .tx-receipt a:hover {
+  color: #1a1a1a;
+}
+
+/* --- LIGHT: Admin dashboard --- */
+.light-mode .admin-title {
+  color: var(--neon);
+}
+.light-mode .admin-btn.primary {
+  background: var(--neon);
+  border-color: var(--neon);
+  color: #fff;
+  box-shadow: 4px 4px 0 0 rgba(45,106,46,0.15);
+}
+.light-mode .admin-btn.primary:hover {
+  box-shadow: 6px 6px 0 0 rgba(45,106,46,0.2);
+}
+.light-mode .admin-btn.secondary:hover {
+  border-color: var(--neon);
+  color: var(--neon);
+  box-shadow: 4px 4px 0 0 var(--neon);
+}
+.light-mode .admin-table-wrap {
+  background: var(--bg-card);
+  border-color: var(--border-hard);
+  box-shadow: 6px 6px 0 0 rgba(45,106,46,0.03);
+}
+.light-mode .admin-table thead tr {
+  background: rgba(45,106,46,0.03);
+}
+.light-mode .admin-table th {
+  color: var(--neon);
+  border-bottom-color: var(--border-hard);
+}
+.light-mode .admin-table td {
+  border-bottom-color: rgba(0,0,0,0.04);
+}
+.light-mode .admin-table tbody tr:hover {
+  background: rgba(45,106,46,0.02);
+}
+.light-mode .admin-table .etherscan-link {
+  color: var(--neon);
+}
+.light-mode .admin-table .etherscan-link:hover {
+  color: #1a1a1a;
+}
+
+/* --- LIGHT: Scan line --- */
+.light-mode .scan-line {
+  background: linear-gradient(90deg, transparent, var(--neon), transparent);
+  opacity: 0.1;
+}
+
