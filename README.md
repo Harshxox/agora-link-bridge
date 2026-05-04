@@ -36,13 +36,6 @@ It uses an **Agentic AI Compliance Engine** to ensure every transaction is verif
 ![Terminal Execution Logs](./assets/terminal-logs.png)
 
 ---
-
-## 📺 Project Demo Video
-Watch the 5-minute technical walkthrough demonstrating the "founder mindset", functional prototype, and backend architecture.
-
-<video src="./assets/Agora-Link-bridge.mp4" controls width="100%"></video>
-
----
 ## 🏗️ System Architecture
 
 Agora-Link follows a **multi-layered microservices architecture** for security, scalability, and real-time AML detection.
